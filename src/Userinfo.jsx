@@ -1,7 +1,7 @@
 import { useUserQuery } from './hooks/useUser';
 
 function UserInfo() {
-	const { data, isSuccess, isError } = useUserQuery();
+	const { data, isSuccess, isError } = useUserQuery(3);
 
 	return (
 		<div>

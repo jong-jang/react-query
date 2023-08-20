@@ -1,7 +1,7 @@
 import { useUserQuery } from './hooks/useUser';
 
 function UserAddress() {
-	const { data, isSuccess } = useUserQuery();
+	const { data, isSuccess } = useUserQuery(2);
 
 	return (
 		<div>
