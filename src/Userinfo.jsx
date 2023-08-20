@@ -1,12 +1,7 @@
-import { useQuery } from '@tanstack/react-query';
+import { useUserQuery } from './hooks/useUser';
 
 function UserInfo() {
-	const fetchUser = async () => {
-		const response = await fetch('https://jsonplaceholder.typicode.com/users/1');
-		return await response.json();
-	};
-
-	const { data, isSuccess, isError } = useQuery(['user'], fetchUser);
+	const { data, isSuccess, isError } = useUserQuery();
 
 	return (
 		<div>
