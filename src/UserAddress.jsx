@@ -5,7 +5,7 @@ function UserAddress() {
 
 	return (
 		<div>
-			<h1>User Adress</h1>
+			<h1>User Address</h1>
 			{isSuccess && <p>{data.address.street}</p>}
 		</div>
 	);
