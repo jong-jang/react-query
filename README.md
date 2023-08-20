@@ -1,1 +1,1 @@
-# react-query
+# react query (tanstack query)
