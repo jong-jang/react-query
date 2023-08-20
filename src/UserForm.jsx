@@ -16,7 +16,14 @@ function UserForm() {
 		userMutation.mutate([UserName, 1]);
 	};
 
-	return <div>UserForm</div>;
+	return (
+		<div>
+			<form onSubmit={handleSubmit}>
+				<input type='text' value={UserName || ''} onChange={(e) => setUserName(e.target.value)} />
+				<button type='submit'>Submit</button>
+			</form>
+		</div>
+	);
 }
 
 export default UserForm;
