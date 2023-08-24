@@ -4,22 +4,22 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
 // 기존의 데이터를 가져오는 커스텀 hook
-const fetchUser = async ({ queryKey }) => {
-	const response = await fetch(`https://jsonplaceholder.typicode.com/users/${queryKey[1]}`);
+const fetchUser = async ({ num }) => {
+	const response = await fetch(`https://jsonplaceholder.typicode.com/users/${num}`);
 	return await response.json();
 };
 
 export const useUserQuery = (num) => {
-	return useQuery(['user', num], fetchUser, {
+	return useQuery(['user'], () =>fetchUser(num), {
 		refetchOnWindowFocus: false,
 		refetchOnMount: false,
-		cacheTime: 1000 * 5,
-		staleTime: 1000 * 6,
+		cacheTime: 1000 * 0,
+		staleTime: 1000 * 0,
 	});
 };
 
 // 서버쪽의 데이터 변경 요청을 하는 커스텀 hook
-/* 
+/*
   GET: 요청 url에 queryString형태로 전달
   POST: 클라이언트쪽에서 body객체를 통해서 내부적으로 전달
   PUT: 클라이언트쪽에서 body객체를 통해서 내부적으로 전달
@@ -33,6 +33,11 @@ export const updateUserName = async ([userName, num]) => {
 		body: JSON.stringify({
 			name: userName,
 		}),
+		//post형식의 요청을 보낼때는 json형식의 데이터가 전달된다고 알려주는 headers옵션 필수
+		//fetch 내장함수가 아닌 axios 라이브러리를 활용할 경우에는 해당 설정 불필요
+		headers: {
+			'Content-type': 'application/json; charset=UTF-8',
+		},
 	});
 	const result = await response.json();
 	return result;
